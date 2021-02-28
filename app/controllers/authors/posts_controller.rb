@@ -6,7 +6,7 @@ class PostsController < AuthorsController
 
   # GET /posts
   def index
-    @posts = Post.all
+    @posts = current_author.posts
   end
 
   # GET /posts/1
@@ -15,7 +15,7 @@ class PostsController < AuthorsController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post = current_author.posts.build
   end
 
   # GET /posts/1/edit
@@ -24,7 +24,7 @@ class PostsController < AuthorsController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = current_author.posts.build(post_params)
 
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
@@ -51,12 +51,12 @@ class PostsController < AuthorsController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = current_author.posts.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def post_params
-      params.require(:post).permit(:title, :description, :published, :published_at, :author_id)
+      params.require(:post).permit(:title, :description )
     end
 end
 end
