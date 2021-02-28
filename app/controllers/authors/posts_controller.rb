@@ -2,7 +2,7 @@ module Authors
 
 
 class PostsController < AuthorsController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   # GET /posts
   def index
@@ -10,8 +10,7 @@ class PostsController < AuthorsController
   end
 
   # GET /posts/1
-  def show
-  end
+ 
 
   # GET /posts/new
   def new
